@@ -32,7 +32,7 @@ export const Addbookform = () => {
    <form onSubmit={handlesubmit}>
   <div className="mb-3">
     <label htmlFor="booktitle" className="form-label" >Book title</label>
-    <input type="text" className="form-control" required value={title} onChange={(e)=>settitle(e.target.value)} id="booktitle" aria-describedby="emailHelp"/>
+    <input type="text" className="form-control"  value={title} onChange={(e)=>settitle(e.target.value)} id="booktitle" aria-describedby="emailHelp"/>
   </div>
   <div className="mb-3">
     <label htmlFor="isbn" className="form-label" >Book isbn</label>
