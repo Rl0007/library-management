@@ -37,7 +37,8 @@ fetch(`/showbook`)
  
 
     return (
-    <div><h1><u>Add Book</u></h1>
+      <div className="container">
+    <h1><u>Add Book</u></h1>
     <Addbookform refresh = {fetchfunction}/>
     <Booktable bookdata={book} setbookdata={setbook} refresh = {fetchfunction}/>
     </div>
