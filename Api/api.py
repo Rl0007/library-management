@@ -13,6 +13,9 @@ class Book(db.Model):
     isbn = db.Column(db.Integer, unique=True, nullable=False)
     author = db.Column(db.String(80))
     publisher = db.Column(db.String(80))
+    stockinlibrary = db.Column(db.Integer )
+    totalstock = db.Column(db.Integer )
+
 
 
 
@@ -26,14 +29,16 @@ def book_searializer(book):
         "isbn" : book.isbn,
         "author": book.author,
         'publisher': book.publisher,
-        'title': book.title
+        'title': book.title,
+        'stockinlibrary': book.stockinlibrary,
+        'totalstock' :  book.totalstock
     }
 
 @app.route('/book', methods=['GET', 'POST'])
 def addbook():
     data = json.loads(request.data)
     print(data['title'])
-    addbook = Book(title = data['title'],isbn=data['isbn'],author=data['author'],publisher=data['publisher'])
+    addbook = Book(title = data['title'],isbn=data['isbn'],author=data['author'],publisher=data['publisher'],stockinlibrary=data['stockinlibrary'],totalstock=data['totalstock'])
     db.session.add(addbook)
     db.session.commit()
     return {"204" : "book added"}
@@ -53,6 +58,9 @@ def editbook():
     book.title = data['title']
     book.author= data['author']
     book.publisher = data['publisher']
+    book.stockinlibrary = data['stockinlibrary']
+    book.totalstock = data['totalstock']
+
     db.session.add(book)
     db.session.commit()
     return {"206":"book edited successfully"}

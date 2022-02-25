@@ -29,7 +29,9 @@ export const Booktable = (props) => {
       isbn : book.isbn,
       title : book.title,
       author : book.author,
-      publisher : book.publisher
+      publisher : book.publisher,
+      stockinlibrary : book.stockinlibrary,
+      totalstock : book.totalstock
     }
     seteditformdata(formValues)
   }
@@ -38,7 +40,9 @@ export const Booktable = (props) => {
     isbn : "",
     title : "",
     author : "",
-    publisher : ""
+    publisher : "",
+    stockinlibrary : "",
+    totalstock : ""
 
   })
   const handleEditFormChange =(e)=>{
@@ -61,7 +65,9 @@ export const Booktable = (props) => {
       title : editformdata.title,
       isbn : editformdata.isbn,
       author : editformdata.author,
-      publisher : editformdata.publisher
+      publisher : editformdata.publisher,
+      stockinlibrary: editformdata.stockinlibrary,
+      totalstock : editformdata.totalstock
     })
   }).then(response => response.json()).then(data =>console.log(data)).then(()=>props.refresh())
   
@@ -84,6 +90,9 @@ export const Booktable = (props) => {
       <th scope="col">Title</th>
       <th scope="col">Author</th>
       <th scope="col">Publisher</th>
+      <th scope="col">Stock in library</th>
+      <th scope="col">Total</th>
+
       <th scope="col">Action</th>
 
     </tr>

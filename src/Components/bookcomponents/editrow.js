@@ -14,6 +14,11 @@ export const Editrow = (props) => {
             name='author'value={props.editformdata.author} onChange={props.handleEditFormChange} /></td>
         <td><input type="text" required = 'required' placeholder='enter publisher..'
             name='publisher'value={props.editformdata.publisher} onChange={props.handleEditFormChange} /></td>
+          <td><input type="text" required = 'required' placeholder='stock..'
+            name='stockinlibrary'value={props.editformdata.stockinlibrary} onChange={props.handleEditFormChange} /></td>
+            <td><input type="text" required = 'required' placeholder='Total'
+            name='totalstock'value={props.editformdata.totalstock} onChange={props.handleEditFormChange} /></td>
+          
           <td>
             <button type='submit' className='btn btn-outline-success btn-small'>save</button>
           </td>

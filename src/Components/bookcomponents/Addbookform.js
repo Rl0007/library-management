@@ -7,6 +7,9 @@ export const Addbookform = ({refresh}) => {
 
  const[author,setauthor]= useState([' '])
  const[publisher,setpublisher]= useState([' '])
+ const[stockinlibrary,setstockinlibrary]= useState([' '])
+ const[totalstock,settotalstock]= useState([' '])
+
  
  const handlesubmit = (e)=>{
    e.preventDefault();
@@ -17,13 +20,17 @@ export const Addbookform = ({refresh}) => {
        title : title,
        isbn : isbn,
        author : author,
-       publisher : publisher
+       publisher : publisher,
+       stockinlibrary: stockinlibrary,
+       totalstock : totalstock
      })
    }).then(response => response.json()).then(data =>console.log(data))
    settitle('')
    setisbn('')
    setauthor('')
    setpublisher('')
+   setstockinlibrary('')
+   settotalstock('')
    refresh()
 
  }
@@ -46,6 +53,14 @@ export const Addbookform = ({refresh}) => {
   <div className="mb-3">
     <label htmlFor="publisher" className="form-label" >Publisher</label>
     <input type="text" className="form-control" id="publisher" value = {publisher}  onChange={(e)=>{setpublisher(e.target.value)}}/>
+  </div>
+   <div className="mb-3">
+    <label htmlFor="stockinlibraryr" className="form-label" >Stock in library</label>
+    <input type="number" className="form-control" id="stockinlibrary" value = {stockinlibrary}  onChange={(e)=>{setstockinlibrary(e.target.value)}}/>
+  </div>
+   <div className="mb-3">
+    <label htmlFor="totalstock" className="form-label" >Total</label>
+    <input type="number" className="form-control" id="totalstock" value = {totalstock}  onChange={(e)=>{settotalstock(e.target.value)}}/>
   </div>
  
   <button type="submit" className="btn btn-outline-dark">Submit</button>
