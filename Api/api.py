@@ -5,6 +5,9 @@ import json
 from flask_sqlalchemy import SQLAlchemy
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///book.db'
+app.config['SQLALCHEMY_BINDS'] = {
+    'member':      'sqlite:///member.db'}
+
 db = SQLAlchemy(app)
 
 class Book(db.Model):
@@ -17,11 +20,61 @@ class Book(db.Model):
     totalstock = db.Column(db.Integer )
 
 
+class Member(db.Model):
+    id = db.Column(db.Integer ,primary_key=True)
+    name = db.Column(db.String(80))
+    email = db.Column(db.String(80) , unique=True)
+    
+## Member backend
 
+
+def member_searializer(member):
+    return {
+        "id" : member.id,
+      "name": member.name,
+      "email": member.email
+    }
+
+@app.route('/member', methods=['GET', 'POST'])
+def addmember():
+    data = json.loads(request.data)
+    print(data['name'])
+    addmember = Member(id= data['id'],name=data['name'],email=data['email'])
+    db.session.add(addmember)
+    db.session.commit()
+    return {"304" : "member added"}
+
+@app.route('/showmember')
+def membershow():
+    allmembers = Member.query.all()
+    datatosend = jsonify([*map(member_searializer,allmembers)])
+    return datatosend
+
+@app.route('/editmember', methods=['GET', 'POST'])
+def editmember():
+    data = json.loads(request.data)
+    print(data['id'])
+    member = Member.query.filter_by(id=data['id']).first()
+    member.name = data['name']
+    member.email = data['email']
+    db.session.add(member)
+    db.session.commit()
+    return {"306":"member edited successfully"}
+
+@app.route('/deletemember/<int:id>')
+def deletemember(id):
+    id = int(id)
+    Member.query.filter_by(id = id).delete()
+    db.session.commit()
+    return{"308": "member deleted successfully"}
 
 @app.route('/')
 def hello():
     return {"201":'Hello World!'}
+
+
+#Book backend
+
 
 def book_searializer(book):
     return {

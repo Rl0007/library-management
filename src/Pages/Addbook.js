@@ -1,5 +1,5 @@
 import React, { useState ,useEffect} from 'react'
-import { Addbookform } from '../Components//bookcomponents/Addbookform'
+import { Addbookform } from '../Components/bookcomponents/Addbookform'
 import { Booktable } from '../Components/bookcomponents/booktable'
 
 export const Addbook = () => {

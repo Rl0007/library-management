@@ -3,6 +3,7 @@ import './App.css';
 import { Routes, Route, Link } from "react-router-dom";
 import {Navbar  } from './Components/Navbar';
 import { Addbook } from './Pages/Addbook'
+import { Addmember } from './Pages/Member';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
    
     
       <Route path ='/' element={ <Addbook/>}/>
+      <Route path ='/member' element={<Addmember/>}  />
   
   
    </Routes>
