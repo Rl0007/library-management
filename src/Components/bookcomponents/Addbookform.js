@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-export const Addbookform = () => {
+export const Addbookform = ({refresh}) => {
 
  const[title,settitle]= useState([' '])
  const[isbn,setisbn]= useState([' '])
@@ -24,6 +24,7 @@ export const Addbookform = () => {
    setisbn('')
    setauthor('')
    setpublisher('')
+   refresh()
 
  }
 
