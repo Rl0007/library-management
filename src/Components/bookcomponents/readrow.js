@@ -1,9 +1,12 @@
-import React from 'react'
+import React from 'react';
+import { useNavigate } from 'react-router-dom'
 
 export const Readrow = ({book,handleEdit,refresh}) => {
- const handleDelete=(e,id)=>{
+  // const history = useNavigate();
+  const handleDelete=(e,id)=>{
    e.preventDefault();
-   fetch(`/deletebook/${id}`).then(response => response.json()).then(data => console.log(data))
+   fetch(`/deletebook/${id}`).then(response => response.json()).then(data => console.log(data));
+    // history('/');
   refresh()
 
  }
@@ -16,8 +19,8 @@ export const Readrow = ({book,handleEdit,refresh}) => {
     <td>{book.stockinlibrary}</td>
     <td>{book.totalstock}</td>
     <td>
-      <button type="button"  onClick={(e)=> handleDelete(e,book.id)} className="btn btn-sm btn-outline-danger mx-1">Delete</button>
-      <button type="button" onClick={(e)=> handleEdit(e,book)} className="btn btn-outline-warning btn-sm">Update</button>
+      <button type="button"  onClick={(e)=> handleDelete(e,book.id)} className="btn btn-sm btn-outline-danger mx-1 my-1">Delete</button>
+      <button type="button" onClick={(e)=> handleEdit(e,book)} className="btn btn-outline-warning btn-sm mx-1 my-1">Update</button>
     </td>
     </tr>
   )

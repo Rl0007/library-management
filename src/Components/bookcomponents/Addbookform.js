@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { Addbookfromapi } from './Addbookfromapi'
 
 export const Addbookform = ({refresh}) => {
 
@@ -63,8 +64,9 @@ export const Addbookform = ({refresh}) => {
     <input type="number" className="form-control" id="totalstock" value = {totalstock}  onChange={(e)=>{settotalstock(e.target.value)}}/>
   </div>
  
-  <button type="submit" className="btn btn-outline-dark">Submit</button>
+  <button type="submit" className="btn btn-outline-dark my-2">Submit</button>
 </form>
+<Addbookfromapi/>
 </div>
   )
 

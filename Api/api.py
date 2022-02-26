@@ -1,4 +1,5 @@
 from urllib import request
+from urllib.request import urlopen
 
 from flask import Flask ,request,jsonify
 import json
@@ -124,6 +125,59 @@ def deletebook(id):
     Book.query.filter_by(id = id).delete()
     db.session.commit()
     return{"208": "book deleted successfully"}
+
+@app.route('/addbookfromapi', methods=['GET', 'POST'])
+def apibook():
+    data = json.loads(request.data)
+    
+    no_book = data['noofbooks']
+    # no_book = no_book
+    print(no_book)
+    print(type(no_book[0]))
+    if  no_book ==  [' ']:
+        no_book =0
+    no_book = int(no_book)
+    if no_book >= 20:
+        no_book = 20
+
+    # no_book = 5
+    bookname = data['bookname']
+    url = "https://frappe.io/api/method/frappe-library?page=2&title=and"
+    response = urlopen(url)
+    
+    data_json = json.loads(response.read())
+    print("hello")
+    for bk in range(len(data_json['message'])):
+        if bk >= no_book:
+            print(1)
+            break
+            print(2)
+        print(type(bookname))
+        if bookname == [' ']:
+            
+            if (Book.query.filter_by(isbn=data_json['message'][bk]['isbn']).first()):
+                print(data_json['message'][bk]['isbn'])
+                continue
+            else :
+                addbook = Book(id=data_json['message'][bk]['bookID'],title = data_json['message'][bk]['title'],isbn=data_json['message'][bk]['isbn'],author=data_json['message'][bk]['authors'],publisher=data_json['message'][bk]['publisher'],stockinlibrary= 0,totalstock=0)
+                print(data_json['message'][bk]['authors'])
+                db.session.add(addbook)
+                db.session.commit()
+        # if bookname[0] != ' ':
+        #     print("inside second if")
+        #     print(type(data_json['message'][bk]['title']))
+        #     if ( bookname[0]==data_json['message'][bk]['title'] ) :
+        #         print("whatsapp")
+        #         if (Book.query.filter_by(isbn=data_json['message'][bk]['isbn']).first()):
+        #             print("yo")
+        #             continue
+        #         else :
+        #             addbook = Book(title = data_json['message'][bk]['title'],isbn=data_json['message'][bk]['isbn'],author=data_json['message'][bk]['authors'],publisher=data_json['message'][bk]['publisher'],stockinlibrary= 0,totalstock=0)
+        #             db.session.add(addbook)
+        #             db.session.commit()
+
+   
+    return {"208" : "book added from api"}
 
 if __name__ == '__main__':
     app.run(debug=True)

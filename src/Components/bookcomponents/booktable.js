@@ -47,13 +47,14 @@ export const Booktable = (props) => {
   })
   const handleEditFormChange =(e)=>{
     e.preventDefault();
-    newFormData['id'] = editbookid
 
     const fieldName = e.target.getAttribute('name');
     const filedValue = e.target.value;
 
     const newFormData = {...editformdata};
     newFormData[fieldName] = filedValue;
+    newFormData['id'] = editbookid;
+
 
     seteditformdata(newFormData);
   }
