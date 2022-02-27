@@ -19,8 +19,8 @@ export const Readrow = ({book,handleEdit,refresh}) => {
     <td>{book.stockinlibrary}</td>
     <td>{book.totalstock}</td>
     <td>
-      <button type="button"  onClick={(e)=> handleDelete(e,book.id)} className="btn btn-sm btn-outline-danger mx-1 my-1">Delete</button>
-      <button type="button" onClick={(e)=> handleEdit(e,book)} className="btn btn-outline-warning btn-sm mx-1 my-1">Update</button>
+      <button type="button"  onClick={(e)=> handleDelete(e,book.id)} className="btn btn-sm btn-outline-danger mx-1 my-1" > <i className="bi bi-trash"></i>Delete</button>
+      <button type="button" onClick={(e)=> handleEdit(e,book)} className="btn btn-outline-warning btn-sm mx-1 my-1"><i className="bi bi-brush "></i>Update</button>
     </td>
     </tr>
   )

@@ -1,6 +1,7 @@
 from urllib import request
 from urllib.request import urlopen
-
+from datetime import datetime
+import datetime
 from flask import Flask ,request,jsonify
 import json
 from flask_sqlalchemy import SQLAlchemy
@@ -25,9 +26,19 @@ class Member(db.Model):
     id = db.Column(db.Integer ,primary_key=True)
     name = db.Column(db.String(80))
     email = db.Column(db.String(80) , unique=True)
-    
+
+class Transaction(db.Model):
+    t_id = db.Column(db.Integer ,primary_key=True)
+    m_id = db.Column(db.Integer, nullable=False)
+    book_isbn = db.Column(db.Integer,  nullable=False)
+    fees = db.Column(db.Integer)
+    status = db.Column(db.String(15))
+    issue_date = db.Column(db.DateTime )
+    return_date = db.Column(db.DateTime )
+
 ## Member backend
 
+    
 
 def member_searializer(member):
     return {
@@ -178,6 +189,59 @@ def apibook():
 
    
     return {"208" : "book added from api"}
+
+# transaction backend
+
+def transaction_searializer(transaction):
+    return {
+        "t_id" : transaction.t_id,
+        "book_isbn" : transaction.book_isbn,
+        "fees": transaction.fees,
+        'status': transaction.status,
+        'm_id': transaction.m_id,
+        'issue_date': transaction.issue_date,
+        'return_date' :  transaction.return_date
+    }
+
+@app.route('/transaction', methods=['GET', 'POST'])
+def addtransaction():
+    data = json.loads(request.data)
+    print(data['m_id'])
+    addtransaction = Transaction(t_id=data['t_id'],m_id = data['m_id'],book_isbn=data['book_isbn'],fees=data['fees'],status=data['status'],issue_date=data['issue_date'],return_date=data['return_date'])
+    db.session.add(addtransaction)
+    db.session.commit()
+    return {"204" : "transaction added"}
+
+@app.route('/showtransaction')
+def transactionshow():
+    alltransactions = Transaction.query.all()
+    datatosend = jsonify([*map(transaction_searializer,alltransactions)])
+    return datatosend
+
+@app.route('/edittransaction', methods=['GET', 'POST'])
+def edittransaction():
+    data = json.loads(request.data)
+    print(data['t_id'])
+    transaction = Transaction.query.filter_by(t_id=data['t_id']).first()
+    transaction.book_isbn = data['book_isbn']
+    transaction.m_id = data['m_id']
+    transaction.fees= data['fees']
+    transaction.status = data['status']
+    transaction.issue_date = data['issue_date']
+    transaction.return_date = data['return_date']
+
+    db.session.add(transaction)
+    db.session.commit()
+    return {"206":"transaction edited successfully"}
+
+@app.route('/deletetransaction/<int:t_id>')
+def deletetransaction(t_id):
+    t_id = int(t_id)
+    Transaction.query.filter_by(t_id = t_id).delete()
+    db.session.commit()
+    return{"208": "transaction deleted successfully"}
+
+
 
 if __name__ == '__main__':
     app.run(debug=True)
