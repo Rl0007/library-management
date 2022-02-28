@@ -88,6 +88,8 @@ export const Booktable = (props) => {
    <table className="table table-hover table-bordered my-2">
   <thead>
     <tr>
+    <th scope="col">Id</th>
+
       <th scope="col">isbn</th>
       <th scope="col">Title</th>
       <th scope="col">Author</th>

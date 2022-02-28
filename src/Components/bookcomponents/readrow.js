@@ -12,6 +12,10 @@ export const Readrow = ({book,handleEdit,refresh}) => {
  }
   return (
     <tr key={book.id}>
+    <td>{ book.id}</td>
+    <td>{ book.id}</td>
+
+
     <td>{ book.isbn}</td>
     <td>{book.title} </td>
     <td>{book.author} </td>
