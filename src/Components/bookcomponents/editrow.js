@@ -3,6 +3,7 @@ import React from 'react'
 export const Editrow = (props) => {
   return (
     <tr >
+      <td>{props.editformdata.id}</td>
  <td><input type="number" required = 'required' placeholder='enter isbn..'
             name='isbn'value={props.editformdata.isbn} onChange={props.handleEditFormChange}/></td>
         <td>
