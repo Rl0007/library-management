@@ -8,6 +8,8 @@ __pycache__
 # testing
 /coverage
 book.db
+member.db
+transaction.db
 # production
 /build
 
