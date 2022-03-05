@@ -13,7 +13,6 @@ export const Readrow = ({book,handleEdit,refresh}) => {
   return (
     <tr key={book.id}>
     <td>{ book.id}</td>
-    <td>{ book.id}</td>
 
 
     <td>{ book.isbn}</td>

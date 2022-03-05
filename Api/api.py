@@ -1,18 +1,25 @@
 from urllib import request
 from urllib.request import urlopen
 from datetime import datetime
+from sqlalchemy.orm import relationship,backref
 import datetime
 from flask import Flask ,request,jsonify
 import json
 from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy.orm import validates
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///book.db'
 app.config['SQLALCHEMY_BINDS'] = {
-    'member':      'sqlite:///member.db'}
+    'member':      'sqlite:///member.db',
+    'transaction':  'sqlite:///transaction.db'}
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
 
 db = SQLAlchemy(app)
 
 class Book(db.Model):
+    __tablename__='book'
+
     id = db.Column(db.Integer ,primary_key=True)
     title = db.Column(db.String(80))
     isbn = db.Column(db.Integer, unique=True, nullable=False)
@@ -20,22 +27,38 @@ class Book(db.Model):
     publisher = db.Column(db.String(80))
     stockinlibrary = db.Column(db.Integer )
     totalstock = db.Column(db.Integer )
+    members = relationship("Member",secondary="transaction")
 
 
 class Member(db.Model):
+    __tablename__='member'
     id = db.Column(db.Integer ,primary_key=True)
     name = db.Column(db.String(80))
     email = db.Column(db.String(80) , unique=True)
+    books = relationship("Book",secondary="transaction",overlaps="members")
+# def feescal(id):
+#     trans = Transaction.query.filter_by(id=id).first()
+#     issue_date = trans.issue_date
+#     return_date = trans.return_date
+#     fees = (return_date - issue_date)
+    
+
 
 class Transaction(db.Model):
+    __tablename__='transaction'
+
     t_id = db.Column(db.Integer ,primary_key=True)
-    m_id = db.Column(db.Integer, nullable=False)
-    book_isbn = db.Column(db.Integer,  nullable=False)
+    m_id = db.Column(db.Integer, db.ForeignKey('member.id'))
+    b_id = db.Column(db.Integer,  db.ForeignKey('book.id'))
     fees = db.Column(db.Integer)
     status = db.Column(db.String(15))
     issue_date = db.Column(db.DateTime )
     return_date = db.Column(db.DateTime )
-
+    # @validates('return_date')
+    # def check_return(self,key,date)
+    book = relationship(Book, backref=backref("transaction",cascade="all,delete-orphan",overlaps="books,members"),overlaps="books,members")
+    member = relationship(Member, backref=backref("transaction",cascade="all,delete-orphan",overlaps="books,members"),overlaps="books,members")
+# make it run
 ## Member backend
 
     

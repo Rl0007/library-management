@@ -4,6 +4,7 @@ import { Routes, Route, Link } from "react-router-dom";
 import {Navbar  } from './Components/Navbar';
 import { Addbook } from './Pages/Addbook'
 import { Addmember } from './Pages/Member';
+import { Addtransaction } from './Pages/Transaction';
 
 function App() {
   return (
@@ -16,6 +17,8 @@ function App() {
     
       <Route path ='/' element={ <Addbook/>}/>
       <Route path ='/member' element={<Addmember/>}  />
+      <Route path ='/transaction' element={<Addtransaction/>}  />
+
   
   
    </Routes>

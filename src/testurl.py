@@ -1,26 +1,42 @@
-from urllib.request import urlopen
-  
-# import json
+from datetime import datetime
+from sqlalchemy.orm import relationship,backref
+import datetime
+from flask import Flask ,request,jsonify
 import json
-# store the URL in url as 
-# parameter for urlopen
-url = "https://frappe.io/api/method/frappe-library?page=2&title=and"
-  
-# store the response of URL
-response = urlopen(url)
-  
-# storing the JSON response 
-# from url in data
-data_json = json.loads(response.read())
-  
-# print the json response
-no_of_books = 10
-print(type(data_json))
-print(type(data_json['message']))
-for bk in range(len(data_json['message'])):
-    if bk >= no_of_books:
-        break
-    print(data_json['message'][bk]) 
-    
-    print(bk)
+from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy.orm import validates
+app = Flask(__name__)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db'
 
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
+db = SQLAlchemy(app)
+# class Test(db.Model):
+#     id = db.Column(db.Integer ,primary_key=True)
+#     issue_date = db.Column(db.DateTime )
+#     return_date = db.Column(db.DateTime,onupdate=feescal(id) )
+#     fees = db.Column(db.String)
+# def feescal(id):
+#     trans = Test.query.filter_by(id=id).first()
+#     issue_date = trans.issue_date
+#     return_date = trans.return_date
+#     fees = (return_date - issue_date)
+#     trans.fees =  fees
+#     db.session.add(trans)
+#     db.session.commit()
+date_and_time = datetime.datetime(2020, 2, 19, 12, 0, 0)
+time_change = datetime.timedelta(days=10)
+new_time = date_and_time + time_change
+class Test(db.Model):
+    id = db.Column(db.Integer ,primary_key=True)
+    issue_date = db.Column(db.DateTime,default=date_and_time )
+    return_date = db.Column(db.DateTime,default = new_time )
+    fees = db.Column(db.String ,default= (return_date-issue_date))
+
+
+    
+
+    
+
+if __name__ == '__main__':
+    app.run(debug=True)

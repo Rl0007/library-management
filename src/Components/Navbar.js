@@ -19,6 +19,11 @@ export const Navbar = () => {
           <a className="nav-link" href="#">Member</a>
         </li>
         </Link>
+        <Link to={`/transaction`}style={{ textDecoration: 'none' }}>
+        <li className="nav-item">
+          <a className="nav-link" href="#">Transaction</a>
+        </li>
+        </Link>
         
         {/* <li className="nav-item dropdown">
           <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
