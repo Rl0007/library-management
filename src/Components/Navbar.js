@@ -1,7 +1,8 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 
 export const Navbar = () => {
+ const[word,Setword]= useState('')
   return (
     <nav className="navbar navbar-expand-lg navbar-dark navbar-custom">
   <div className="container-fluid">
@@ -19,30 +20,53 @@ export const Navbar = () => {
           <a className="nav-link" href="#">Member</a>
         </li>
         </Link>
-        <Link to={`/transaction`}style={{ textDecoration: 'none' }}>
-        <li className="nav-item">
+        {/* <li className="nav-item">
           <a className="nav-link" href="#">Transaction</a>
         </li>
-        </Link>
-        
-        {/* <li className="nav-item dropdown">
+         */}
+        <li className="nav-item dropdown">
           <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Dropdown
+            Transaction
           </a>
           <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a className="dropdown-item" href="#">Action</a></li>
-            <li><a className="dropdown-item" href="#">Another action</a></li>
-            <li><hr className="dropdown-divider"/></li>
-            <li><a className="dropdown-item" href="#">Something else here</a></li>
+            <li><a className="dropdown-item" href="#">
+        <Link to={`/issuebook`}style={{ textDecoration: 'none',color: 'black' }}>
+              
+              issuebook
+              </Link>
+            </a></li>
+            <li><a className="dropdown-item" href="#">
+        <Link to={`/returnbook`}style={{ textDecoration: 'none',color: 'black' }}>
+              Return book</Link></a></li>
+            {/* <li><hr className="dropdown-divider"/></li>
+            <li><a className="dropdown-item" href="#">Something else here</a></li> */}
           </ul>
         </li>
-        <li className="nav-item">
+         <li className="nav-item dropdown">
+          <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Tools
+          </a>
+          <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><a className="dropdown-item" href="#">
+        <Link to={`/popularbook`}style={{ textDecoration: 'none',color: 'black' }}>
+              
+              Popular book
+              </Link>
+            </a></li>
+            <li><a className="dropdown-item" href="#">
+        <Link to={`/highcust`}style={{ textDecoration: 'none',color: 'black' }}>
+              Valuable customer</Link></a></li>
+            {/* <li><hr className="dropdown-divider"/></li>
+            <li><a className="dropdown-item" href="#">Something else here</a></li> */}
+          </ul>
+        </li>
+        {/* <li className="nav-item">
           <a className="nav-link disabled">Disabled</a>
         </li> */}
       </ul>
       <form className="d-flex">
-        <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
-        <button className="btn btn-outline-light " type="submit">Search</button>
+        <input className="form-control me-2" type="search" onChange={(e)=>{Setword(e.target.value)}} placeholder="Search" aria-label="Search"/>
+        <Link to={`/addsearch` } state={{ word: word }} style={{textDecoration:'none'}}><button className="btn btn-outline-light " type="submit" > Search </button></Link>
       </form>
     </div>
   </div>

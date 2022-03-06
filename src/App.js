@@ -4,7 +4,13 @@ import { Routes, Route, Link } from "react-router-dom";
 import {Navbar  } from './Components/Navbar';
 import { Addbook } from './Pages/Addbook'
 import { Addmember } from './Pages/Member';
-import { Addtransaction } from './Pages/Transaction';
+import { Addissuebook } from './Pages/issuebook';
+import { Addreturn1book } from './Pages/returnbook';
+import { Addsearch } from './Pages/searchpage';
+import { Addpopularbook } from './Pages/popularbook';
+import { Addhighcust } from './Pages/highcustomer';
+
+// import { Addtransaction } from './Pages/Transaction';
 
 function App() {
   return (
@@ -17,7 +23,18 @@ function App() {
     
       <Route path ='/' element={ <Addbook/>}/>
       <Route path ='/member' element={<Addmember/>}  />
-      <Route path ='/transaction' element={<Addtransaction/>}  />
+      <Route path ='/issuebook' element={<Addissuebook/>}  />
+      <Route path ='/addsearch/' element={ <Addsearch/>}/>
+      <Route path ='/returnbook' element={<Addreturn1book/>}  />
+      <Route path ='/popularbook' element={<Addpopularbook/>}  />
+      <Route path ='/popularbook' element={<Addpopularbook/>}  />
+      <Route path ='/highcust' element={<Addhighcust/>}  />
+
+
+
+
+
+
 
   
   
