@@ -20,10 +20,7 @@ export const Navbar = () => {
           <a className="nav-link" href="#">Member</a>
         </li>
         </Link>
-        {/* <li className="nav-item">
-          <a className="nav-link" href="#">Transaction</a>
-        </li>
-         */}
+     
         <li className="nav-item dropdown">
           <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             Transaction
@@ -38,8 +35,7 @@ export const Navbar = () => {
             <li><a className="dropdown-item" href="#">
         <Link to={`/returnbook`}style={{ textDecoration: 'none',color: 'black' }}>
               Return book</Link></a></li>
-            {/* <li><hr className="dropdown-divider"/></li>
-            <li><a className="dropdown-item" href="#">Something else here</a></li> */}
+          
           </ul>
         </li>
          <li className="nav-item dropdown">
@@ -56,13 +52,10 @@ export const Navbar = () => {
             <li><a className="dropdown-item" href="#">
         <Link to={`/highcust`}style={{ textDecoration: 'none',color: 'black' }}>
               Valuable customer</Link></a></li>
-            {/* <li><hr className="dropdown-divider"/></li>
-            <li><a className="dropdown-item" href="#">Something else here</a></li> */}
+          
           </ul>
         </li>
-        {/* <li className="nav-item">
-          <a className="nav-link disabled">Disabled</a>
-        </li> */}
+     
       </ul>
       <form className="d-flex">
         <input className="form-control me-2" type="search" onChange={(e)=>{Setword(e.target.value)}} placeholder="Search" aria-label="Search"/>

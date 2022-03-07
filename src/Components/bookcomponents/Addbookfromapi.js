@@ -41,10 +41,7 @@ export const Addbookfromapi = () => {
                             <input type="number" className="form-control" value={noofbooks} onChange={(e)=>setnoofbooks(e.target.value)} name='totalnoofbooks' id="noofbooks" aria-describedby="emailHelp"/>
                         
                         </div>
-                        {/* <div className="mb-3">
-                            <label htmlFor="name" className="form-label">Name</label>
-                            <input type="text" step="any" value={bookname} onChange={(e)=>setbookname(e.target.value)} className="form-control" name='bookname' id="name"/>
-                        </div> */}
+                      
                 
                         <button type="submit" className="btn btn-outline-warning">Add</button>
                 </form>

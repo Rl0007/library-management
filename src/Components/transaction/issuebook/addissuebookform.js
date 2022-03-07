@@ -32,12 +32,12 @@ export const Addissuebookform = ({refresh}) => {
    <form onSubmit={handlesubmit}>
   <div className="mb-3">
     <label htmlFor="issuebookid" className="form-label" >Member id</label>
-    <input type="number" className="form-control"  value={m_id} onChange={(e)=>setm_id(e.target.value)} id="Memberid" aria-describedby="emailHelp"/>
+    <input type="number" className="form-control" required='required' value={m_id} onChange={(e)=>setm_id(e.target.value)} id="Memberid" aria-describedby="emailHelp"/>
   </div>
  
   <div className="mb-3">
     <label htmlFor="b_id" className="form-label" >Book b_id</label>
-    <input type="number" className="form-control" value={b_id} onChange={(e)=>{setb_id(e.target.value)}} id="b_id" aria-describedby="emailHelp"/>
+    <input type="number" className="form-control"required='required' value={b_id} onChange={(e)=>{setb_id(e.target.value)}} id="b_id" aria-describedby="emailHelp"/>
   </div>
   <div className="mb-3">
     <label htmlFor="issuedate" className="form-label" >issuedate</label>

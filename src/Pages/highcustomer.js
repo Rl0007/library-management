@@ -17,22 +17,7 @@ fetch(`/highcust`)
    )
       
     
-    // const[memberrefresh,setmemberrefresh]=useState([''])
 
-    // const refreshMember=(e)=>{
-    //   e.preventDefault();
-    //    fetch(`/showmember`)
-    // .then(response => response.json()).then(data => console.log(data))
-    // .then(()=> console.log(member))
-    // const newmember =[ {
-    //   id : 23,
-    //   title : 'hello',
-    //   author : 'this is author',
-    //   publisher : 'this is u'
-    // }]
-    // // setit();
-    
-    // }
  
 
     return (
