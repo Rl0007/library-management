@@ -1,4 +1,5 @@
 
+from distutils.log import debug
 from urllib import request
 from urllib.request import urlopen
 from datetime import datetime
@@ -10,8 +11,7 @@ from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.orm import validates
 from sqlalchemy import or_ ,func,desc,asc
 from flask_cors import CORS,cross_origin
-from flask import send_from_directory
-app = Flask(__name__,static_folder='../../LIBRARY-MANAGEMENT/build')
+app = Flask(__name__,static_folder='../../LIBRARY-MANAGEMENT/build',static_url_path='')
 CORS(app)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///book.db'
 app.config['SQLALCHEMY_BINDS'] = {
@@ -354,6 +354,7 @@ def highcust():
     mem = Member.query.filter_by(id=val.m_id).all()
     datatosend = jsonify([*map(member_searializer,mem)])
     return datatosend
+from flask import send_file, send_from_directory, safe_join, abort
 
 @app.route('/')
 @cross_origin()
@@ -362,4 +363,4 @@ def serve():
 
 
 if __name__ == '__main__':
-    app.run()
+    app.run(debug=True)
