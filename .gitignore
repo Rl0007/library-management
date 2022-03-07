@@ -13,7 +13,7 @@ transaction.db
 test.db
 # production
 # /build
-
+api.py
 # misc
 .DS_Store
 .env.local
