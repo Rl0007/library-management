@@ -11,7 +11,7 @@ from sqlalchemy.orm import validates
 from sqlalchemy import or_ ,func,desc,asc
 from flask_cors import CORS,cross_origin
 from flask import send_from_directory
-app = Flask(__name__,static_folder='/build')
+app = Flask(__name__,static_folder='../../LIBRARY-MANAGEMENT/build')
 CORS(app)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///book.db'
 app.config['SQLALCHEMY_BINDS'] = {
@@ -358,7 +358,7 @@ def highcust():
 @app.route('/')
 @cross_origin()
 def serve():
-    return {"232":"hello"}
+    return send_from_directory(app.static_folder,'index.html')
 
 
 if __name__ == '__main__':
