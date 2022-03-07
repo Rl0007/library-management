@@ -111,10 +111,10 @@ def deletemember(id):
     db.session.commit()
     return{"308": "member deleted successfully"}
 
-@app.route('/hello')
+# @app.route('/hello')
 
-def hello():
-    return {"201":'Hello World!'}
+# def hello():
+#     return {"201":'Hello World!'}
 
 
 #Book backend
@@ -358,7 +358,7 @@ def highcust():
 @app.route('/')
 @cross_origin()
 def serve():
-    return send_from_directory(app.static_folder,'index.html')
+    return {"232":"hello"}
 
 
 if __name__ == '__main__':
