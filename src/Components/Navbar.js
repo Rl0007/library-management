@@ -13,7 +13,7 @@ export const Navbar = () => {
     <div className="collapse navbar-collapse" id="navbarSupportedContent">
       <ul className="navbar-nav me-auto mb-2 mb-lg-0">
         <li className="nav-item">
-        <Link to={`/addbook`} style={{ textDecoration: 'none' }}>   <a className="nav-link active" aria-current="page" >Book</a></Link>
+        <Link to={`/`} style={{ textDecoration: 'none' }}>   <a className="nav-link active" aria-current="page" >Book</a></Link>
         </li>
         <Link to={`/member`}style={{ textDecoration: 'none' }}>
         <li className="nav-item">

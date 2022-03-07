@@ -21,7 +21,7 @@ function App() {
    <Routes>
    
     
-      <Route path ='/addbook' element={ <Addbook/>}/>
+      <Route path ='/' element={ <Addbook/>}/>
       <Route path ='/member' element={<Addmember/>}  />
       <Route path ='/issuebook' element={<Addissuebook/>}  />
       <Route path ='/addsearch/' element={ <Addsearch/>}/>
