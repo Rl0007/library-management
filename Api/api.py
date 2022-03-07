@@ -356,6 +356,7 @@ def highcust():
     return datatosend
 
 @app.route('/')
+@cross_origin()
 def serve():
     return send_from_directory(app.static_folder,'index.html')
 
