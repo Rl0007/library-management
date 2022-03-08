@@ -72,7 +72,8 @@ class Transaction(db.Model):
 
 @app.route('/')
 def serve():
-    return send_from_directory(app.static_folder,'index.html')
+    # return send_from_directory(app.static_folder,'index.html')
+    return {"jfd": "djfdjf"}
 ## Member backend
 
     
