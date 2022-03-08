@@ -69,6 +69,10 @@ class Transaction(db.Model):
         m_id, b_id,
         ),
     )
+
+@app.route('/')
+def serve():
+    return send_from_directory(app.static_folder,'index.html')
 ## Member backend
 
     
@@ -356,10 +360,7 @@ def highcust():
     return datatosend
 from flask import send_file, send_from_directory, safe_join, abort
 
-@app.route('/')
-@cross_origin()
-def serve():
-    return send_from_directory(app.static_folder,'index.html')
+
 
 
 if __name__ == '__main__':
