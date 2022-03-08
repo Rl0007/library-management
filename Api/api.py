@@ -11,7 +11,7 @@ from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.orm import validates
 from sqlalchemy import or_ ,func,desc,asc
 from flask_cors import CORS,cross_origin
-app = Flask(__name__,static_folder='../../LIBRARY-MANAGEMENT/build',static_url_path='')
+app = Flask(__name__,static_folder='/index',static_url_path='')
 CORS(app)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///book.db'
 app.config['SQLALCHEMY_BINDS'] = {
