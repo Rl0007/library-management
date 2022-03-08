@@ -11,13 +11,13 @@ Heroku link :- https://library-management-rahul.herokuapp.com/
 
 ## Demo
 
-Tools
+## Tools
 ![](https://github.com/Rl0007/library-management/blob/main/images/tools.gif)
-### Desc :- Popular book And highest paying customer
-search
+### Desc :-### Popular book And highest paying customer
+## search
 ![](https://github.com/Rl0007/library-management/blob/d44ef66a0752f8de04b6bdaac3dd931486f878c7/images/search.gif)
 
-### Desc :- Searching with book title and author
+### Desc :-### Searching with book title and author
 
 Add book
 
