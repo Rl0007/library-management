@@ -1,70 +1,83 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Library Management
 
-## Available Scripts
+This project is made to assist in Library Management process , made with flask back-end and react front-end , Sqlalchemy used.
 
-In the project directory, you can run:
 
-### `npm start`
+## Deployment
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Heroku link :- https://library-management-rahul.herokuapp.com/
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
 
-### `npm test`
+## Demo
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Tools
+![](https://github.com/Rl0007/library-management/blob/main/images/tools.gif)
+#### Desc :- Popular book And highest paying customer
+## search
+![](https://github.com/Rl0007/library-management/blob/d44ef66a0752f8de04b6bdaac3dd931486f878c7/images/search.gif)
 
-### `npm run build`
+#### Desc :-Searching with book title and author
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Add book
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+![](https://github.com/Rl0007/library-management/blob/d44ef66a0752f8de04b6bdaac3dd931486f878c7/images/addbook.gif)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+#### Desc :- Adding book from api 
 
-### `npm run eject`
+## API Reference
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+#### Get all items
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```http
+  GET /api/items
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+| Parameter | Type     | Description                |
+| :-------- | :------- | :------------------------- |
+| `api_key` | `string` |https://frappe.io/api/method/frappe-library?page=2&title=and |
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+#### Get item
+## Screenshots
+## Home page
 
-## Learn More
+![](https://github.com/Rl0007/library-management/blob/d44ef66a0752f8de04b6bdaac3dd931486f878c7/images/homepage.PNG)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+#### Desc :- Home page of project top part has form to add book to database and in bottom database is shown
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Member page
 
-### Code Splitting
+![](https://github.com/Rl0007/library-management/blob/d44ef66a0752f8de04b6bdaac3dd931486f878c7/images/member.PNG)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+#### Desc :- Member page of project top part has form to add member to database and in bottom database is shown
 
-### Analyzing the Bundle Size
+## Issue book and return book 
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+![](https://github.com/Rl0007/library-management/blob/d44ef66a0752f8de04b6bdaac3dd931486f878c7/images/issuebook.PNG)
 
-### Making a Progressive Web App
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+![](https://github.com/Rl0007/library-management/blob/d44ef66a0752f8de04b6bdaac3dd931486f878c7/images/returnbook.PNG)
 
-### Advanced Configuration
+#### Desc :- Issue and return book page of project top part has form to issue and return book to member and in bottom database is shown
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+## Tech Stack
 
-### Deployment
+| Technology | Description     |                    
+| :-------- | :------- | 
+| `Reactjs`      | `For frontend` |
+| `python-flask`      | `For Backend` | 
+| `flask-sqlalchemy`      | ` ORM` |
+| `sqlite`      | `Database` | 
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
 
-### `npm run build` fails to minify
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+## Support
+
+For support, email 12agrawalrahul@gmail.com
+
+
+## 🚀 About Me
+I'm a full stack developer...
+
+My name is Rahul Agrawal 
