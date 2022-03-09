@@ -21,7 +21,7 @@ export const Editrow = (props) => {
             name='totalstock'value={props.editformdata.totalstock} onChange={props.handleEditFormChange} /></td>
           
           <td>
-            <button type='submit' className='btn btn-outline-success btn-small'><i class="bi bi-save"></i>save</button>
+            <button type='submit' className='btn btn-outline-success btn-small'><i className="bi bi-save"></i>save</button>
           </td>
 
     </tr>

@@ -1,15 +1,17 @@
 import React, { useState } from 'react'
+import { Submitalert } from '../submitalert';
 import { Addbookfromapi } from './Addbookfromapi'
+import Alert from 'react-bootstrap/Alert';
 
 export const Addbookform = ({refresh}) => {
+const [showalert, setshowalert] = useState(false);
+ const[title,settitle]= useState([''])
+ const[isbn,setisbn]= useState([''])
 
- const[title,settitle]= useState([' '])
- const[isbn,setisbn]= useState([' '])
-
- const[author,setauthor]= useState([' '])
- const[publisher,setpublisher]= useState([' '])
- const[stockinlibrary,setstockinlibrary]= useState([' '])
- const[totalstock,settotalstock]= useState([' '])
+ const[author,setauthor]= useState([''])
+ const[publisher,setpublisher]= useState([''])
+ const[stockinlibrary,setstockinlibrary]= useState([''])
+ const[totalstock,settotalstock]= useState([''])
 
  
  const handlesubmit = (e)=>{
@@ -25,18 +27,28 @@ export const Addbookform = ({refresh}) => {
        stockinlibrary: stockinlibrary,
        totalstock : totalstock
      })
-   }).then(response => response.json()).then(data =>console.log(data))
+   }).then(response => response.json()).then(data =>console.log(data)).then(()=>refresh()).then(()=>setshowalert(true))
    settitle('')
    setisbn('')
    setauthor('')
    setpublisher('')
    setstockinlibrary('')
    settotalstock('')
-   refresh()
 
  }
+ if (showalert) {
+    return (
+      <Alert variant="success" onClose={() => setshowalert(false)} dismissible>
+        <Alert.Heading>submit</Alert.Heading>
+        <p>
+Added successfully!!!        </p>
+      </Alert>
+    );
+  }
 
   return (
+    <>
+   
   <div className="container"> 
    <form onSubmit={handlesubmit}>
   <div className="mb-3">
@@ -66,8 +78,8 @@ export const Addbookform = ({refresh}) => {
  
   <button type="submit" className="btn btn-outline-dark my-2">Submit</button>
 </form>
-<Addbookfromapi/>
+<Addbookfromapi refresh={refresh}/>
 </div>
-  )
+</>  )
 
 }

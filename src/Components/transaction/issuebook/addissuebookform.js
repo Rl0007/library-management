@@ -1,11 +1,13 @@
 import React, { useState } from 'react'
+import Alert from 'react-bootstrap/Alert';
 
 export const Addissuebookform = ({refresh}) => {
 
- const[m_id,setm_id]= useState([' '])
-
- const[b_id,setb_id]= useState([' '])
- const[issuedate,setissuedate]= useState([' '])
+ const[m_id,setm_id]= useState([''])
+const [showalert, setshowalert] = useState(false);
+const [showalert2,setshowalert2] = useState(false);
+ const[b_id,setb_id]= useState([''])
+ const[issuedate,setissuedate]= useState([''])
  
 
  
@@ -19,14 +21,45 @@ export const Addissuebookform = ({refresh}) => {
        b_id : b_id,
        issuedate : issuedate,
      })
-   }).then(response => response.json()).then(data =>console.log(data))
+   }).then(response => response.json()).then((data) =>{
+    if (data['604']==="book issued")
+    {setshowalert(true)
+    console.log(data)}
+    else if (data['605']==="book out of stock"){
+      setshowalert2(true)
+    }
+    else if (data['606']==="member not available"){
+      setshowalert2(true)
+    }else if (data['607']==="book not available"){
+      setshowalert2(true)
+    }
+    
+    
+    }).then(()=> refresh())
    setm_id('')
    setb_id('')
    setissuedate('')
-   refresh()
+   
 
  }
-
+ if (showalert2){
+   return(<>
+      <Alert variant="danger" onClose={() => setshowalert2(false)} dismissible>
+        <Alert.Heading>Failed</Alert.Heading>
+        <p>
+ Either book id is wrong or no member available or book out of stock please check!!!    </p>
+      </Alert></>
+    );
+ }
+if (showalert) {
+    return (
+      <Alert variant="success" onClose={() => setshowalert(false)} dismissible>
+        <Alert.Heading>submit</Alert.Heading>
+        <p>
+Added successfully!!!        </p>
+      </Alert>
+    );
+  }
   return (
   <div className="container"> 
    <form onSubmit={handlesubmit}>

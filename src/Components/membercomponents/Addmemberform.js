@@ -1,11 +1,13 @@
 import React, { useState } from 'react'
+import Alert from 'react-bootstrap/Alert';
 
 export const Addmemberform = ({refresh}) => {
 
- const[id,setid]= useState([' '])
+ const[id,setid]= useState([''])
+const [showalert, setshowalert] = useState(false);
 
- const[name,setname]= useState([' '])
- const[email,setemail]= useState([' '])
+ const[name,setname]= useState([''])
+ const[email,setemail]= useState([''])
  
 
  
@@ -19,13 +21,21 @@ export const Addmemberform = ({refresh}) => {
        name : name,
        email : email,
      })
-   }).then(response => response.json()).then(data =>console.log(data))
+   }).then(response => response.json()).then(data =>console.log(data)).then(()=>refresh()).then(()=> setshowalert(true))
    setid('')
    setname('')
    setemail('')
-   refresh()
 
  }
+  if (showalert) {
+    return (
+      <Alert variant="success" onClose={() => setshowalert(false)} dismissible>
+        <Alert.Heading>submit</Alert.Heading>
+        <p>
+Added successfully!!!        </p>
+      </Alert>
+    );
+  }
 
   return (
   <div className="container"> 

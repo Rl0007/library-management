@@ -1,11 +1,13 @@
 import React, { useState } from 'react'
+import Alert from 'react-bootstrap/Alert';
 
 export const Addreturn1bookform = ({refresh}) => {
 
- const[m_id,setm_id]= useState([' '])
+ const[m_id,setm_id]= useState([''])
+const [showalert, setshowalert] = useState(false);
 
- const[b_id,setb_id]= useState([' '])
- const[returndate,setreturndate]= useState([' '])
+ const[b_id,setb_id]= useState([''])
+ const[returndate,setreturndate]= useState([''])
  
 
 //  resolve date issue in returnbook funtion handle edit is ok check api for edit route check if added to database correctly
@@ -19,13 +21,22 @@ export const Addreturn1bookform = ({refresh}) => {
        b_id : b_id,
        returndate : returndate,
      })
-   }).then(response => response.json()).then(data =>console.log(data))
+   }).then(response => response.json()).then(data =>console.log(data)).then(()=>refresh()).then(()=>setshowalert(true))
    setm_id('')
    setb_id('')
    setreturndate('')
-   refresh()
+   
 
  }
+ if (showalert) {
+    return (
+      <Alert variant="success" onClose={() => setshowalert(false)} dismissible>
+        <Alert.Heading>submit</Alert.Heading>
+        <p>
+Added successfully!!!        </p>
+      </Alert>
+    );
+  }
 
   return (
   <div className="container"> 

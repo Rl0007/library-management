@@ -113,6 +113,7 @@ def editmember():
 def deletemember(id):
     id = int(id)
     Member.query.filter_by(id = id).delete()
+    Transaction.query.filter_by(m_id=id).delete()
     db.session.commit()
     return{"308": "member deleted successfully"}
 
@@ -169,6 +170,7 @@ def editbook():
 def deletebook(id):
     id = int(id)
     Book.query.filter_by(id = id).delete()
+    Transaction.query.filter_by(b_id = id).delete()
     db.session.commit()
     return{"208": "book deleted successfully"}
 
@@ -220,17 +222,20 @@ def issuebook_searializer(transaction):
 def addissuebook():
     data = json.loads(request.data)
     if (bool(Member.query.filter_by(id=data['m_id']).first())):
-        book = Book.query.filter_by(id=data['b_id']).first()
-        if book.stockinlibrary >0 :
-            addissuebook = Transaction(m_id= data['m_id'],b_id=data['b_id'],issuedate=data['issuedate'])
-            db.session.add(addissuebook)
-            db.session.commit()
-            book.stockinlibrary = int(book.stockinlibrary) -1 
-            db.session.add(book)
-            db.session.commit()
-            return {"604" : "book issued "}
+        if(bool(Book.query.filter_by(id=data['b_id']).first())):
+            book = Book.query.filter_by(id=data['b_id']).first()
+            if book.stockinlibrary >0 :
+                addissuebook = Transaction(m_id= data['m_id'],b_id=data['b_id'],issuedate=data['issuedate'])
+                db.session.add(addissuebook)
+                db.session.commit()
+                book.stockinlibrary = int(book.stockinlibrary) -1 
+                db.session.add(book)
+                db.session.commit()
+                return {"604" : "book issued"}
+            else :
+                return {"605": "book out of stock"}
         else :
-            return {"605": "book out of stock"}
+            return{"607":"book not available"}
     else :
         return {"606": "member not available"}
 

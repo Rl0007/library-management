@@ -26,15 +26,17 @@ export const Navbar = () => {
             Transaction
           </a>
           <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a className="dropdown-item" href="#">
-        <Link to={`/issuebook`}style={{ textDecoration: 'none',color: 'black' }}>
+            <li>  <Link to={`/issuebook`}style={{ textDecoration: 'none',color: 'black' }}><a className="dropdown-item" href="#" >
+      
               
               issuebook
-              </Link>
-            </a></li>
-            <li><a className="dropdown-item" href="#">
-        <Link to={`/returnbook`}style={{ textDecoration: 'none',color: 'black' }}>
-              Return book</Link></a></li>
+              
+            </a>
+            </Link>
+            </li>
+            <li><Link to={`/returnbook`}style={{ textDecoration: 'none',color: 'black' }}><a className="dropdown-item" href="#">
+        
+              Return book</a></Link></li>
           
           </ul>
         </li>
@@ -43,15 +45,15 @@ export const Navbar = () => {
             Tools
           </a>
           <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a className="dropdown-item" href="#">
-        <Link to={`/popularbook`}style={{ textDecoration: 'none',color: 'black' }}>
+            <li> <Link to={`/popularbook`}style={{ textDecoration: 'none',color: 'black' }}><a className="dropdown-item" href="#">
+       
               
               Popular book
-              </Link>
-            </a></li>
-            <li><a className="dropdown-item" href="#">
-        <Link to={`/highcust`}style={{ textDecoration: 'none',color: 'black' }}>
-              Valuable customer</Link></a></li>
+              
+            </a></Link></li>
+            <li><Link to={`/highcust`}style={{ textDecoration: 'none',color: 'black' }}><a className="dropdown-item" href="#">
+        
+              Valuable customer</a></Link></li>
           
           </ul>
         </li>
