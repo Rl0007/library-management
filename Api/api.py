@@ -199,16 +199,16 @@ def apibook():
     for bk in range(len(data_json['message'])):
         if bk >= no_book:
             break
-        if bookname == [' ']:
+        # if bookname == [' ']:
             
-            if (Book.query.filter_by(isbn=data_json['message'][bk]['isbn']).first()):
-                print(data_json['message'][bk]['isbn'])
-                continue
-            else :
-                addbook = Book(id=data_json['message'][bk]['bookID'],title = data_json['message'][bk]['title'],isbn=data_json['message'][bk]['isbn'],author=data_json['message'][bk]['authors'],publisher=data_json['message'][bk]['publisher'],stockinlibrary= 0,totalstock=0)
-                print(data_json['message'][bk]['authors'])
-                db.session.add(addbook)
-                db.session.commit()
+        if (bool(Book.query.filter_by(isbn=data_json['message'][bk]['isbn']).first())):
+            # print(data_json['message'][bk]['isbn'])
+            continue
+        else :
+            addbook = Book(id=data_json['message'][bk]['bookID'],title = data_json['message'][bk]['title'],isbn=data_json['message'][bk]['isbn'],author=data_json['message'][bk]['authors'],publisher=data_json['message'][bk]['publisher'],stockinlibrary= 0,totalstock=0)
+            # print(data_json['message'][bk]['authors'])
+            db.session.add(addbook)
+            db.session.commit()
       
    
     return {"208" : "book added from api"}
