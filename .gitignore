@@ -7,10 +7,10 @@
 __pycache__
 # testing
 /coverage
-book.db
-member.db
-transaction.db
-test.db
+# book.db
+# member.db
+# transaction.db
+# test.db
 # production
 # /build
 
