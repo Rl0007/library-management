@@ -8,8 +8,8 @@ export const Readrow = ({return1book,handleEdit,refresh}) => {
    handleClose()
    e.preventDefault();
    fetch(`/deletereturnbook/${m_id}/${b_id}`).then(response => response.json()).then((data) => {
-  data['709']==='book status is unpaid cannot delete'?setshowalert(true):   
-    console.log(data)
+ if( data['709']==='book status is unpaid cannot delete'){setshowalert(true)} 
+    // console.log(data)
   
   
   }).then(()=>refresh())

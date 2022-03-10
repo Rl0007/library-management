@@ -16,7 +16,7 @@ let errormessage = 'Member id or gmail taken'
  
  const handlesubmit = (e)=>{
    e.preventDefault();
-   console.log(id,name,email)
+  //  console.log(id,name,email)
    fetch(`/member`,{
      method : "POST",
      body : JSON.stringify({
@@ -32,7 +32,7 @@ let errormessage = 'Member id or gmail taken'
       setshowalert(true)
     }
     
-    console.log(data)}).then(()=>refresh())
+    }).then(()=>refresh())
    setid('')
    setname('')
    setemail('')
@@ -56,16 +56,16 @@ Added successfully!!!        </p>
    <form onSubmit={handlesubmit}>
   <div className="mb-3">
     <label htmlFor="memberid" className="form-label" >Member id</label>
-    <input type="number" className="form-control"  value={id} onChange={(e)=>setid(e.target.value)} id="Memberid" aria-describedby="emailHelp"/>
+    <input type="number" required='required' className="form-control"  value={id} onChange={(e)=>setid(e.target.value)} id="Memberid" aria-describedby="emailHelp"/>
   </div>
  
   <div className="mb-3">
     <label htmlFor="name" className="form-label" >Member name</label>
-    <input type="text" className="form-control" value={name} onChange={(e)=>{setname(e.target.value)}} id="name" aria-describedby="emailHelp"/>
+    <input type="text" className="form-control" required='required'value={name} onChange={(e)=>{setname(e.target.value)}} id="name" aria-describedby="emailHelp"/>
   </div>
   <div className="mb-3">
     <label htmlFor="email" className="form-label" >email</label>
-    <input type="email" className="form-control" id="email" value = {email}  onChange={(e)=>{setemail(e.target.value)}}/>
+    <input type="email" className="form-control"required='required' id="email" value = {email}  onChange={(e)=>{setemail(e.target.value)}}/>
   </div>
  
  

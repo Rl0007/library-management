@@ -7,7 +7,7 @@ export const Readrow = ({book,handleEdit,refresh}) => {
   const handleDelete=(e,id)=>{
     handleClose()
    e.preventDefault();
-   fetch(`/deletebook/${id}`).then(response => response.json()).then(data => console.log(data)).then(()=>refresh()
+   fetch(`/deletebook/${id}`).then(response => response.json()).then(()=>refresh()
  )
     // history('/');
   

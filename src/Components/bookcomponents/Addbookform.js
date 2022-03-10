@@ -16,7 +16,7 @@ const [showalert, setshowalert] = useState(false);
  
  const handlesubmit = (e)=>{
    e.preventDefault();
-   console.log(title,isbn,author,publisher)
+  //  console.log(title,isbn,author,publisher)
    fetch(`/book`,{
      method : "POST",
      body : JSON.stringify({
@@ -27,7 +27,7 @@ const [showalert, setshowalert] = useState(false);
        stockinlibrary: stockinlibrary,
        totalstock : totalstock
      })
-   }).then(response => response.json()).then(data =>console.log(data)).then(()=>refresh()).then(()=>setshowalert(true))
+   }).then(response => response.json()).then(()=>refresh()).then(()=>setshowalert(true))
    settitle('')
    setisbn('')
    setauthor('')

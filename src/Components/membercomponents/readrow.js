@@ -5,7 +5,7 @@ export const Readrow = ({member,handleEdit,refresh}) => {
  const handleDelete=(e,id)=>{
    handleClose()
    e.preventDefault();
-   fetch(`/deletemember/${id}`).then(response => response.json()).then(data => console.log(data)).then(
+   fetch(`/deletemember/${id}`).then(response => response.json()).then(
  ()=> refresh())
 
  }

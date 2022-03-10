@@ -18,7 +18,7 @@ export const Editrow = (props) => {
 <td> {props.editformdata.m_id}</td>
 <td> {props.editformdata.b_id}</td>
 
-{console.log(convert(props.editformdata.issuedate))}
+{/* {console.log(convert(props.editformdata.issuedate))} */}
 
         <td><input type="date" required = 'required' placeholder='enter issuedate..'
             name='issuedate'value={convert(props.editformdata.issuedate)} onChange={props.handleEditFormChange} /></td>

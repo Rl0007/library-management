@@ -18,7 +18,7 @@ export const Addbookfromapi = (props) => {
        bookname : bookname
      
      })
-   }).then(response => response.json()).then(data =>console.log(data)).then(()=>props.refresh())
+   }).then(response => response.json()).then(()=>props.refresh())
    setnoofbooks('')
    setbookname('')
    history('/')

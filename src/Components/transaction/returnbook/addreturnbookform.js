@@ -16,7 +16,7 @@ const erroralertvalue=(value)=>{setshowerroralert(value)}
 //  resolve date issue in returnbook funtion handle edit is ok check api for edit route check if added to database correctly
  const handlesubmit = (e)=>{
    e.preventDefault();
-   console.log(m_id,b_id,returndate)
+  //  console.log(m_id,b_id,returndate)
    fetch(`/addreturnbook`,{
      method : "POST",
      body : JSON.stringify({
@@ -24,7 +24,7 @@ const erroralertvalue=(value)=>{setshowerroralert(value)}
        b_id : b_id,
        returndate : returndate,
      })
-   }).then(response => response.json()).then((data) =>{console.log(data)
+   }).then(response => response.json()).then((data) =>{
   
   if (data['704']==="book  returned"){
     setshowalert(true)

@@ -16,7 +16,7 @@ const erroralertvalue=(value)=>{setshowerroralert(value)}
  let errormessage = "Book already issued"
  const handlesubmit = (e)=>{
    e.preventDefault();
-   console.log(m_id,b_id,issuedate)
+  //  console.log(m_id,b_id,issuedate)
    fetch(`/addissuebook`,{
      method : "POST",
      body : JSON.stringify({
@@ -25,10 +25,10 @@ const erroralertvalue=(value)=>{setshowerroralert(value)}
        issuedate : issuedate,
      })
    }).then(response => response.json()).then((data) =>{
-     console.log(data)
+    //  console.log(data)
     if (data['604']==="book issued")
     {setshowalert(true)
-    console.log(data)}
+    }
     else if (data['605']==="book out of stock"){
       setshowalert2(true)
     }

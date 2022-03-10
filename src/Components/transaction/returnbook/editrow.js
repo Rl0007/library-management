@@ -19,7 +19,7 @@ props.editformdata.returndate = convert(props.editformdata.returndate)
 <td> {props.editformdata.m_id}</td>
 <td> {props.editformdata.b_id}</td>
 <td> {props.editformdata.issuedate}</td>
-{console.log(props.editformdata.returndate)}
+{/* {console.log(props.editformdata.returndate)} */}
 
 
 

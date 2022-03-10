@@ -14,7 +14,7 @@ export const Issuebooktable = (props) => {
     event.preventDefault();
     seteditissuebookm_id(issuebook.m_id);
     seteditissuebookb_id(issuebook.b_id);
-    console.log('inside handleedit')
+    // console.log('inside handleedit')
 
     const formValues = {
       m_id : issuebook.m_id,
@@ -53,7 +53,7 @@ export const Issuebooktable = (props) => {
       b_id : editformdata.b_id,
       issuedate : editformdata.issuedate,
     })
-  }).then(response => response.json()).then(data =>console.log(data)).then(()=>props.refresh())
+  }).then(response => response.json()).then(()=>props.refresh())
   
     
     seteditissuebookm_id(null);

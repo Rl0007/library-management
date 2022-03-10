@@ -44,7 +44,7 @@ export const Membertable = (props) => {
       name : editformdata.name,
       email : editformdata.email,
     })
-  }).then(response => response.json()).then(data =>console.log(data)).then(()=>props.refresh())
+  }).then(response => response.json()).then(()=>props.refresh())
   
     
     seteditmemberid(null);

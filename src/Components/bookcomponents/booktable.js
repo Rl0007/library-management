@@ -71,7 +71,7 @@ export const Booktable = (props) => {
       stockinlibrary: editformdata.stockinlibrary,
       totalstock : editformdata.totalstock
     })
-  }).then(response => response.json()).then(data =>console.log(data)).then(()=>props.refresh())
+  }).then(response => response.json()).then(()=>props.refresh())
   
     // const editedbook= {
     

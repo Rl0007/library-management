@@ -14,7 +14,7 @@ export const Return1booktable = (props) => {
     event.preventDefault();
     seteditreturn1bookm_id(return1book.m_id);
     seteditreturn1bookb_id(return1book.b_id);
-    console.log('inside handleedit')
+    // console.log('inside handleedit')
 
     const formValues = {
       m_id : return1book.m_id,
@@ -61,7 +61,7 @@ export const Return1booktable = (props) => {
       status : editformdata.status,
 
     })
-  }).then(response => response.json()).then(data =>console.log(data)).then(()=>props.refresh())
+  }).then(response => response.json()).then(()=>props.refresh())
   
     
     seteditreturn1bookm_id(null);
