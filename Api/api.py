@@ -9,7 +9,7 @@ from flask import Flask ,request,jsonify
 import json
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.orm import validates
-from sqlalchemy import or_ ,func,desc,asc
+from sqlalchemy import or_ ,and_,func,desc,asc,join,union
 from flask_cors import CORS,cross_origin
 app = Flask(__name__,static_folder='./build',static_url_path='')
 CORS(app)
@@ -88,10 +88,15 @@ def member_searializer(member):
 @app.route('/member', methods=['GET', 'POST'])
 def addmember():
     data = json.loads(request.data)
-    addmember = Member(id= data['id'],name=data['name'],email=data['email'])
-    db.session.add(addmember)
-    db.session.commit()
-    return {"304" : "member added"}
+    if bool(Member.query.filter_by(id=data['id']).first()):
+        return {"303":"member id or gmail taken"}
+    elif bool(Member.query.filter_by(email=data['email']).first()):
+        return {"303":"member id or gmail taken"}
+    else :    
+        addmember = Member(id= data['id'],name=data['name'],email=data['email'])
+        db.session.add(addmember)
+        db.session.commit()
+        return {"304" : "member added"}
 
 @app.route('/showmember')
 def membershow():
@@ -223,6 +228,8 @@ def addissuebook():
     data = json.loads(request.data)
     if (bool(Member.query.filter_by(id=data['m_id']).first())):
         if(bool(Book.query.filter_by(id=data['b_id']).first())):
+            if(bool(Transaction.query.filter(and_(Transaction.b_id==data['b_id'],Transaction.m_id==data['m_id'])).first())):
+                return{"610":"book already issued"}
             book = Book.query.filter_by(id=data['b_id']).first()
             if book.stockinlibrary >0 :
                 addissuebook = Transaction(m_id= data['m_id'],b_id=data['b_id'],issuedate=data['issuedate'])
@@ -354,15 +361,39 @@ def search(word):
 
 @app.route('/popularbook')
 def popularbook():
-    val = db.session.query(Transaction.b_id.label('b_id'),func.count(Transaction.b_id).label('countbook')).group_by(Transaction.b_id).order_by(desc('countbook')).first()
-    book = Book.query.filter_by(id=val.b_id).all()
-    datatosend = jsonify([*map(book_searializer,book)])
+    val = db.session.query(Transaction.b_id.label('b_id'),func.count(Transaction.b_id).label('countbook')).group_by(Transaction.b_id).order_by(desc('countbook')).limit(3).all()
+   
+
+    if len(val)==1:
+        query = Book.query.filter_by(id=val[0].b_id).all()
+    if len(val)==2:
+        book = Book.query.filter_by(id=val[0].b_id)
+        book1 = Book.query.filter_by(id=val[1].b_id)
+        query = book.union(book1).all()
+    if len(val)==3:
+        book = Book.query.filter_by(id=val[0].b_id)
+        book1 = Book.query.filter_by(id=val[1].b_id)
+        book2 = Book.query.filter_by(id=val[2].b_id)
+        bookinter = book.union(book1)
+        query = bookinter.union(book2).all()
+    datatosend = jsonify([*map(book_searializer,query)])
     return datatosend
 @app.route('/highcust')
 def highcust():
-    val = db.session.query(Transaction.m_id.label('m_id'),func.sum(Transaction.fees).label("fees")).group_by('m_id').order_by(desc('fees')).first()
-    mem = Member.query.filter_by(id=val.m_id).all()
-    datatosend = jsonify([*map(member_searializer,mem)])
+    val = db.session.query(Transaction.m_id.label('m_id'),func.sum(Transaction.fees).label("fees")).group_by('m_id').order_by(desc('fees')).limit(3).all()
+    if len(val)==1:
+        query = Member.query.filter_by(id=val[0].m_id).all()
+    if len(val)==2:
+        member = Member.query.filter_by(id=val[0].m_id)
+        member1 = Member.query.filter_by(id=val[1].m_id)
+        query = member.union(member1).all()
+    if len(val)==3:
+        member = Member.query.filter_by(id=val[0].m_id)
+        member1 = Member.query.filter_by(id=val[1].m_id)
+        member2 = Member.query.filter_by(id=val[2].m_id)
+        memberinter = member.union(member1)
+        query = memberinter.union(member2).all()
+    datatosend = jsonify([*map(member_searializer,query)])
     return datatosend
 from flask import send_file, send_from_directory, safe_join, abort
 

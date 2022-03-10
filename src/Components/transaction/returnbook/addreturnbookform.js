@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import Alert from 'react-bootstrap/Alert';
+import { Erroralert } from '../../erroralert';
 
 export const Addreturn1bookform = ({refresh}) => {
 
@@ -8,7 +9,9 @@ const [showalert, setshowalert] = useState(false);
 
  const[b_id,setb_id]= useState([''])
  const[returndate,setreturndate]= useState([''])
- 
+ const[showerroralert,setshowerroralert]=useState(false)
+const erroralertvalue=(value)=>{setshowerroralert(value)}
+ let errormessage = "No transaction found"
 
 //  resolve date issue in returnbook funtion handle edit is ok check api for edit route check if added to database correctly
  const handlesubmit = (e)=>{
@@ -21,19 +24,29 @@ const [showalert, setshowalert] = useState(false);
        b_id : b_id,
        returndate : returndate,
      })
-   }).then(response => response.json()).then(data =>console.log(data)).then(()=>refresh()).then(()=>setshowalert(true))
+   }).then(response => response.json()).then((data) =>{console.log(data)
+  
+  if (data['704']==="book  returned"){
+    setshowalert(true)
+  }
+  else if (data['705']==="no trasaction found"){
+    setshowerroralert(true)
+  }
+  }).then(()=>refresh())
    setm_id('')
    setb_id('')
    setreturndate('')
    
 
  }
+ if(showerroralert){
+   return(<Erroralert errormessage={errormessage} erroralertvalue={erroralertvalue}/>)}
  if (showalert) {
     return (
       <Alert variant="success" onClose={() => setshowalert(false)} dismissible>
         <Alert.Heading>submit</Alert.Heading>
         <p>
-Added successfully!!!        </p>
+Book returned successfully!!!        </p>
       </Alert>
     );
   }

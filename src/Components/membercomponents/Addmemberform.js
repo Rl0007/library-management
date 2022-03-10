@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import Alert from 'react-bootstrap/Alert';
+import { Erroralert } from '../erroralert';
 
 export const Addmemberform = ({refresh}) => {
 
@@ -8,8 +9,10 @@ const [showalert, setshowalert] = useState(false);
 
  const[name,setname]= useState([''])
  const[email,setemail]= useState([''])
- 
-
+ const[showerroralert,setshowerroralert]=useState(false)
+const erroralertvalue=(value)=>{setshowerroralert(value)
+}
+let errormessage = 'Member id or gmail taken'
  
  const handlesubmit = (e)=>{
    e.preventDefault();
@@ -21,11 +24,22 @@ const [showalert, setshowalert] = useState(false);
        name : name,
        email : email,
      })
-   }).then(response => response.json()).then(data =>console.log(data)).then(()=>refresh()).then(()=> setshowalert(true))
+   }).then(response => response.json()).then((data) =>{
+    if (data['303'] ===  "member id or gmail taken"){
+      setshowerroralert(true)
+    }
+    if(data['304']==="member added"){
+      setshowalert(true)
+    }
+    
+    console.log(data)}).then(()=>refresh())
    setid('')
    setname('')
    setemail('')
 
+ }
+ if(showerroralert){
+   return(<Erroralert errormessage={errormessage} erroralertvalue={erroralertvalue}/>)
  }
   if (showalert) {
     return (

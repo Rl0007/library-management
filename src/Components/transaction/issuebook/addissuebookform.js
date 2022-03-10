@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
 import Alert from 'react-bootstrap/Alert';
+import { Erroralert } from '../../erroralert';
+
 
 export const Addissuebookform = ({refresh}) => {
 
@@ -8,9 +10,10 @@ const [showalert, setshowalert] = useState(false);
 const [showalert2,setshowalert2] = useState(false);
  const[b_id,setb_id]= useState([''])
  const[issuedate,setissuedate]= useState([''])
- 
+ const[showerroralert,setshowerroralert]=useState(false)
+const erroralertvalue=(value)=>{setshowerroralert(value)}
 
- 
+ let errormessage = "Book already issued"
  const handlesubmit = (e)=>{
    e.preventDefault();
    console.log(m_id,b_id,issuedate)
@@ -22,6 +25,7 @@ const [showalert2,setshowalert2] = useState(false);
        issuedate : issuedate,
      })
    }).then(response => response.json()).then((data) =>{
+     console.log(data)
     if (data['604']==="book issued")
     {setshowalert(true)
     console.log(data)}
@@ -32,7 +36,7 @@ const [showalert2,setshowalert2] = useState(false);
       setshowalert2(true)
     }else if (data['607']==="book not available"){
       setshowalert2(true)
-    }
+    }else if (data['610']==="book already issued"){setshowerroralert(true)}
     
     
     }).then(()=> refresh())
@@ -41,6 +45,9 @@ const [showalert2,setshowalert2] = useState(false);
    setissuedate('')
    
 
+ }
+ if(showerroralert){
+   return(<Erroralert errormessage={errormessage} erroralertvalue={erroralertvalue}/>)
  }
  if (showalert2){
    return(<>
