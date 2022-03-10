@@ -12,18 +12,21 @@ Heroku link :- https://library-management-rahul.herokuapp.com/
 ## Demo
 
 ## Tools
-![](https://github.com/Rl0007/library-management/blob/main/images/tools.gif)
+![](https://github.com/Rl0007/library-management/blob/main/images/unknown_2022.03.10-19.54.gif)
 #### Desc :- Popular book And highest paying customer
 ## search
-![](https://github.com/Rl0007/library-management/blob/d44ef66a0752f8de04b6bdaac3dd931486f878c7/images/search.gif)
+![](https://github.com/Rl0007/library-management/blob/main/images/search.gif)
 
 #### Desc :-Searching with book title and author
 
 Add book
 
-![](https://github.com/Rl0007/library-management/blob/d44ef66a0752f8de04b6bdaac3dd931486f878c7/images/addbook.gif)
+![](https://github.com/Rl0007/library-management/blob/main/images/unknown_2022.03.10-17.21.gif)
 
 #### Desc :- Adding book from api 
+
+##Add Member
+![](https://github.com/Rl0007/library-management/blob/main/images/unknown_2022.03.10-17.25.gif)
 
 ## API Reference
 
@@ -41,22 +44,22 @@ Add book
 ## Screenshots
 ## Home page
 
-![](https://github.com/Rl0007/library-management/blob/d44ef66a0752f8de04b6bdaac3dd931486f878c7/images/homepage.PNG)
+![](https://github.com/Rl0007/library-management/blob/main/images/homepage.PNG)
 
 #### Desc :- Home page of project top part has form to add book to database and in bottom database is shown
 
 ## Member page
 
-![](https://github.com/Rl0007/library-management/blob/d44ef66a0752f8de04b6bdaac3dd931486f878c7/images/member.PNG)
+![](https://github.com/Rl0007/library-management/blob/main/images/member.PNG)
 
 #### Desc :- Member page of project top part has form to add member to database and in bottom database is shown
 
 ## Issue book and return book 
 
-![](https://github.com/Rl0007/library-management/blob/d44ef66a0752f8de04b6bdaac3dd931486f878c7/images/issuebook.PNG)
+![](https://github.com/Rl0007/library-management/blob/main/images/issuebook.PNG)
 
 
-![](https://github.com/Rl0007/library-management/blob/d44ef66a0752f8de04b6bdaac3dd931486f878c7/images/returnbook.PNG)
+![](https://github.com/Rl0007/library-management/blob/main/images/returnbook.PNG)
 
 #### Desc :- Issue and return book page of project top part has form to issue and return book to member and in bottom database is shown
 
